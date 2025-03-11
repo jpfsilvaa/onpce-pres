@@ -1,0 +1,73 @@
+\usepackage{amsfonts, amsmath, amssymb, mathtools, latexsym, bbm}
+
+% Teoremas, definições, proposições, lemas, corolários e conjecturas
+% Pode dar conflito com outros pacotes
+\usepackage{amsthm}
+
+% conjuntos e indices
+\newcommand{\blockset}{\mathcal{B}}
+\newcommand{\blockcset}{\mathcal{B}_{c}}
+\newcommand{\blockmset}{\mathcal{B'}}
+\newcommand{\blockidx}{b}
+\newcommand{\blocki}{b_i}
+\newcommand{\blockj}{b_j}
+
+\newcommand{\roomsete}{\mathcal{T}_{e}}
+\newcommand{\roomseta}{\mathcal{T}_{a}}
+\newcommand{\roomset}{\mathcal{T}}
+\newcommand{\roomidx}{t}
+\newcommand{\roomidxalt}{\ell}
+
+\newcommand{\specialtyset}{\mathcal{S}}
+\newcommand{\specialtytxset}{\mathcal{S}_{tx}}
+\newcommand{\specialtyprset}{\mathcal{S}_{pr}}
+\newcommand{\specialtycset}{\mathcal{S}_{ci}}
+\newcommand{\specialtymset}{\mathcal{S}_{do}}
+\newcommand{\specialtyidx}{s}
+
+\newcommand{\planninghorizonset}{\mathcal{D}}
+\newcommand{\planninghorizonidx}{d}
+
+\newcommand{\timeperiodset}{\mathcal{N}}
+\newcommand{\timeperiodidx}{n}
+
+% --------------------------------------------------
+
+% variaveis
+\newcommand{\blockvar}{x_{\roomidx\blockidx\specialtyidx}}
+\newcommand{\blockivar}{x_{\roomidx\blocki\specialtyidx}}
+\newcommand{\blockjvar}{x_{\roomidx\blockj\specialtyidx}}
+\newcommand{\deficitvar}{z_{\specialtyidx}}
+\newcommand{\precvar}{y_{\roomidx\planninghorizonidx\specialtyidx}}
+\newcommand{\integervar}{w_{\blockidx\specialtyidx}}
+\newcommand{\balancevar}{L}
+
+% --------------------------------------------------
+
+% It doesn't need to be used, for now
+% \newcommand{\surgeonset}{\mathcal{C}}
+% \newcommand{\surgeonidx}{\ell}
+% \newcommand{\anestset}{\mathcal{A}}
+% \newcommand{\anestidx}{a}
+
+% \newcommand{\surgeonvar}{y_{\surgeonidx\blockidx\roomidx}}
+% \newcommand{\anestvar}{z_{\anestidx\blockidx\roomidx}}
+
+% \newcommand{\surgeontospecialty}{\gamma}
+
+% --------------------------------------------------
+
+% parametros
+\newcommand{\roomtospecialty}{\psi}
+\newcommand{\demand}{\beta}
+\newcommand{\numbersurgeons}{N}
+\newcommand{\numbersanests}{\Gamma}
+\newcommand{\needanest}{\gamma}
+\newcommand{\revenue}{P}
+\newcommand{\specteams}{\Phi}
+\newcommand{\mindeficit}{\zeta}
+\newcommand{\ub}{k}
+\newcommand{\days}{|\planninghorizonset|}
+\newcommand{\eps}{\epsilon}
+\newcommand{\allowedrooms}{\alpha}
+\newcommand{\entiredayroom}{\phi}
