@@ -1,5 +1,5 @@
-% \documentclass[10pt]{beamer}
-\documentclass[handout]{beamer}
+\documentclass[10pt]{beamer}
+% \documentclass[handout]{beamer}
 
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -9,6 +9,7 @@
 \usepackage[scale=2]{ccicons}
 
 \usepackage{pgfplots}
+\usepackage{svg}
 \usepgfplotslibrary{dateplot}
 
 \usepackage{xspace}
@@ -64,7 +65,7 @@
         \begin{itemize}
             \setlength\itemsep{1em}
             \item<3-> Alocação de equipes médicas
-            \item<4-> Alocação de anestesistas
+            \item<4-> Alocação de anestesistas (estatutário e PJ)
             \item<5-> Alocação de leitos
             \item<6-> Controle de estoque (leitos e fármacos)
             \item<7-> \ca{Planejamento de Salas Cirúrgicas}
@@ -91,6 +92,7 @@
             \item[1-]<3-> Coletar disponibilidade de salas, anestesistas e equipes médicas
             \item[2-]<4-> Coletar demanda mínima das especialidades
             \item[3-]<5-> Alocar especialidades a blocos de tempo (manhã/tarde) a cada dia útil
+            \item[4-]<6-> Em alguns casos, feito manualmente
         \end{enumerate}
         \column{0.4\textwidth}
         \onslide<5->\begin{figure}
@@ -102,27 +104,27 @@
 \end{frame}
 
 
-\begin{frame}{Planejamento de Salas Cirúrgicas}
-    \begin{columns}[t]
-        \column{0.6\textwidth}
-        \onslide<2->\textbf{O que o planejamento afeta?}
-        \begin{itemize}
-            \setlength\itemsep{1em}
-            \item<3-> Redução do tempo de espera
-            \item<4-> Redução do tempo de ociosidade
-            \item<5-> Aumento da eficiência
-            \item<6-> ``Produção cirúrgica''
-        \end{itemize}
-        \column{0.4\textwidth}
-        \begin{figure}
-            \setcounter{figure}{\the\numexpr\value{figure}-1\relax}
-            \centering
-            \includegraphics[width=0.8\textwidth]{images/schedule.png}
-            \caption{Escala Cirúrgica\label{fig:schedule}}
-            \setcounter{figure}{\the\numexpr\value{figure}+1\relax}
-        \end{figure}
-    \end{columns}
-\end{frame}
+% \begin{frame}{Planejamento de Salas Cirúrgicas}
+%     \begin{columns}[t]
+%         \column{0.6\textwidth}
+%         \onslide<2->\textbf{O que o planejamento afeta?}
+%         \begin{itemize}
+%             \setlength\itemsep{1em}
+%             \item<3-> Redução do tempo de espera
+%             \item<4-> Redução do tempo de ociosidade
+%             \item<5-> Aumento da eficiência
+%             \item<6-> ``Produção cirúrgica''
+%         \end{itemize}
+%         \column{0.4\textwidth}
+%         \begin{figure}
+%             \setcounter{figure}{\the\numexpr\value{figure}-1\relax}
+%             \centering
+%             \includegraphics[width=0.8\textwidth]{images/schedule.png}
+%             \caption{Escala Cirúrgica\label{fig:schedule}}
+%             \setcounter{figure}{\the\numexpr\value{figure}+1\relax}
+%         \end{figure}
+%     \end{columns}
+% \end{frame}
 
 
 % \begin{frame}{Restrições de Planejamento}
@@ -306,36 +308,47 @@
 
 
 \begin{frame}{Resultados - Alocação de blocos}
-    % exemplo de escala antiga feita na mao
-    % enfatizar os buracos e a falta de otimizacao
+    \begin{figure}
+        \includegraphics[width=0.8\textwidth]{images/esps_modelo.png}
+    \end{figure}
 \end{frame}
 
 
-\begin{frame}{Resultados}
-    % exemplo de escala antiga feita na pelo solver, com as mesmas restrições
-    % enfatizar que mais blocos foram alocados
+\begin{frame}{Resultados - Alocação de blocos}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/totais_modelo.png}
+    \end{figure}
+    \onslide<2->Citavam que o principal gargalo era a falta de anestesistas, então exploramos esse parâmetro...
 \end{frame}
 
 
-\begin{frame}{Resultados - Blocos sequenciais}
-    % exemplo de escala antiga feita na pelo solver, com algumsa folgas nas restrições
-    % enfatizar que mais blocos foram alocados
+\begin{frame}{Resultados - Mais Anestesistas}
+    \begin{figure}
+        \includegraphics[width=0.8\textwidth]{images/esps_anest.png}
+    \end{figure}
 \end{frame}
 
-\begin{frame}{Resultados - Balanceamento de oferta}
-    % Gráficos mostrando melhoras ao usar o solver
+
+\begin{frame}{Resultados - Mais Anestesistas}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/totais_anest.png}
+    \end{figure}
+    \onslide<2->A quantidade de anestesistas é um gargalo, mas não o único...
 \end{frame}
+
 
 \begin{frame}{Conclusões}
-    % resumir o que foi feito
-    % resumir os resultados
-    % possíveis melhorias
     \begin{itemize}
         \setlength\itemsep{1em}
         \item<2-> Desenvolvemos um Modelo de Programação Linear Inteira Multiobjetivo para o Planejamento de Salas Cirúrgicas
-        \item<3-> Modelo em fase de implementação no HC - Unicamp
-        \item<5-> Dificuldades: Dados reais do hospital são essenciais para a modelagem, porém exigem um grande esforço de coleta e tratamento
-        \item<6-> Trabalhos futuros: Integrar o modelo com a demanda real e incrementá-lo com outras técnicas de otimização
+        \item<3-> Modelo em fase de implantação no HC - Unicamp
+        \begin{itemize}
+            \item<4-> Open-source solver
+        \end{itemize}
+        \item<5-> \textbf{Dificuldades:} Dados reais do hospital são essenciais para a modelagem, porém exigem um grande esforço de coleta e tratamento
+        \item<6-> \textbf{Trabalhos futuros:} Integrar o modelo com mais restrições reais (demanda/fila, tempos, leitos, ...) e explorar mais técnicas de otimização
     \end{itemize}
 \end{frame}
 
